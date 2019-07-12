@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            // 显式声明支持注解
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath = true
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // Android Support
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["recyclerview"]
+    // MultiDex
+    api rootProject.ext.dependencies["multidex"]
+    // ARouter
+    api rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    // ButterKnife
+    api rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    // retrofit 2
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    // RxJava 2
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    // 日志拦截器
+    api rootProject.ext.dependencies["logging-interceptor"]
+    // Gson解析Json
+    api rootProject.ext.dependencies["gson"]
+    // Glide图片加载
+    api rootProject.ext.dependencies["glide"]
+    // RecyclerView适配器
+    api rootProject.ext.dependencies["baserecyclerviewadapterhelper"]
+    // 圆角矩形控件背景
+    api rootProject.ext.dependencies["flycoroundview"]
+    // 权限申请
+    api rootProject.ext.dependencies["xxpermissions"]
+}

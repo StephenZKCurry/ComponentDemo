@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zk.module_article">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!-- 文章列表页面 -->
+        <activity
+            android:name=".ui.ArticleListActivity"
+            android:screenOrientation="portrait"></activity>
+    </application>
+</manifest>
